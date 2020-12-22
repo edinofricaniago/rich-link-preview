@@ -2,7 +2,6 @@ package com.tukangbasic.linkpreview
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -35,8 +34,8 @@ class MainActivity : AppCompatActivity() {
                         .fit()
                         .into(ivImage)
 
-                    tvText.text = "Title : ${result?.meta?.title}\n" +
-                            "Desc : ${result?.meta?.description}\n" +
+                    tvText.text = "Title : ${result?.meta?.title}\n\n" +
+                            "Desc : ${result?.meta?.description}\n\n" +
                             "MediaType : ${result?.meta?.mediaType}"+
                             "url : ${result?.meta?.url}"
                 }

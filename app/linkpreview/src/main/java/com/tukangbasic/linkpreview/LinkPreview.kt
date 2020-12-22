@@ -189,15 +189,21 @@ class LinkPreview(
                     if (src.isNotEmpty()) {
                         imageUrl = resolveURL(url, src)
                     } else {
-                        src = document.select("link[rel=apple-touch-icon]").attr("href")
-                        if (src.isNotEmpty()) {
-                            imageUrl = resolveURL(url, src)
-                            metaData.favicon = resolveURL(url, src)
-                        } else {
-                            src = document.select("link[rel=icon]").attr("href")
+                        val images: Elements = document.select("img")
+                        if(images.isNotEmpty()){
+                            src = images[0].attr("src")
+                            imageUrl = resolveURL(url,src)
+                        }else{
+                            src = document.select("link[rel=apple-touch-icon]").attr("href")
                             if (src.isNotEmpty()) {
                                 imageUrl = resolveURL(url, src)
                                 metaData.favicon = resolveURL(url, src)
+                            } else {
+                                src = document.select("link[rel=icon]").attr("href")
+                                if (src.isNotEmpty()) {
+                                    imageUrl = resolveURL(url, src)
+                                    metaData.favicon = resolveURL(url, src)
+                                }
                             }
                         }
                     }
